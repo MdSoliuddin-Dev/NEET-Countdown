@@ -6,14 +6,14 @@
   <title>NEET 2026 Countdown</title>
   <style>
     :root{
-      --fg: #eaf0ff;
+      --fg:#eaf0ff;
       --fg-dim:#c9d2f8;
       --accent:#6ea8fe;
       --accent-2:#8b5cf6;
       --bg-dark:#0b1020;
-      --glass: rgba(15,20,40,0.35);
-      --glass-strong: rgba(10,14,28,0.55);
-      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+      --glass:rgba(15,20,40,0.35);
+      --glass-strong:rgba(10,14,28,0.55);
+      --shadow:0 10px 30px rgba(0,0,0,0.35);
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -22,20 +22,20 @@
       font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
       overflow:hidden;
     }
+
     /* Layers */
-    #wallpaper-layer, #vanta-layer, #overlay {
-      position:fixed; inset:0; width:100%; height:100%;
-    }
+    #wallpaper-layer, #vanta-layer, #overlay { position:fixed; inset:0; width:100%; height:100% }
     #wallpaper-layer{
       z-index:0; background-size:cover; background-position:center;
       transition: filter .4s ease, opacity .4s ease, background-image .4s ease;
     }
-    /* default preset gradient */
+    /* Gradients as fallback/presets */
     .preset-1{
-      background: radial-gradient(1000px 700px at 10% 10%, #152044, transparent 60%),
-                  radial-gradient(900px 600px at 90% 20%, #201040, transparent 60%),
-                  radial-gradient(900px 600px at 30% 90%, #102a48, transparent 60%),
-                  linear-gradient(145deg, #0a0f22, #0c1734 60%, #0a0f22);
+      background:
+        radial-gradient(1000px 700px at 10% 10%, #152044, transparent 60%),
+        radial-gradient(900px 600px at 90% 20%, #201040, transparent 60%),
+        radial-gradient(900px 600px at 30% 90%, #102a48, transparent 60%),
+        linear-gradient(145deg, #0a0f22, #0c1734 60%, #0a0f22);
     }
     .preset-2{ background: linear-gradient(135deg,#0f2027,#203a43 50%,#2c5364) }
     .preset-3{ background: linear-gradient(135deg,#1a1f3b,#442c5f 50%,#1b2a41) }
@@ -43,10 +43,11 @@
     .preset-5{ background: linear-gradient(135deg,#121212,#1f1c2c 50%,#3a1c71) }
     .preset-6{ background: linear-gradient(135deg,#0f0c29,#302b63 50%,#24243e) }
 
-    #vanta-layer{ z-index:1; pointer-events:none; }
+    #vanta-layer{ z-index:1; pointer-events:none }
     #overlay{ z-index:2; pointer-events:none;
-      background: radial-gradient(1200px 800px at 50% 20%, rgba(0,0,0,0.05), transparent 60%),
-                  linear-gradient(0deg, rgba(0,0,0,0.25), rgba(0,0,0,0.05));
+      background:
+        radial-gradient(1200px 800px at 50% 20%, rgba(0,0,0,0.08), transparent 60%),
+        linear-gradient(0deg, rgba(0,0,0,0.28), rgba(0,0,0,0.06));
     }
 
     /* Content */
@@ -73,15 +74,13 @@
     .countdown-card{
       pointer-events:auto;
       background: var(--glass); border:1px solid rgba(255,255,255,0.08); padding:22px; border-radius:18px; backdrop-filter: blur(12px);
-      box-shadow: var(--shadow); max-width: 1024px; width:min(94vw, 1000px);
+      box-shadow: var(--shadow); max-width: 1100px; width:min(94vw, 1040px);
       animation: rise .9s ease-out both;
     }
     @keyframes rise{ from{ transform: translateY(8px); opacity:0 } to{ transform: translateY(0); opacity:1 } }
 
     .target-line{ font-size:14px; color:var(--fg-dim); margin:0 0 10px 0; letter-spacing:.3px }
-    .timer{
-      display:flex; gap:14px; flex-wrap:wrap; align-items:stretch; justify-content:center;
-    }
+    .timer{ display:flex; gap:14px; flex-wrap:wrap; align-items:stretch; justify-content:center }
     .tile{
       min-width:120px; flex:1 1 130px; background: rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.09);
       border-radius:16px; padding:16px 14px; display:flex; flex-direction:column; align-items:center; gap:4px;
@@ -103,9 +102,7 @@
     }
 
     /* FAB menu */
-    .fab{
-      position:fixed; right:18px; bottom:18px; z-index:6; pointer-events:auto;
-    }
+    .fab{ position:fixed; right:18px; bottom:18px; z-index:6; pointer-events:auto }
     .fab-btn{
       width:54px; height:54px; border-radius:16px; border:1px solid rgba(255,255,255,0.12);
       background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
@@ -117,7 +114,7 @@
     .dots span{ width:6px; height:6px; background:#fff; opacity:.9; border-radius:50% }
 
     .panel{
-      position:fixed; right:18px; bottom:84px; width:min(94vw, 420px); max-height:72vh; overflow:auto;
+      position:fixed; right:18px; bottom:84px; width:min(94vw, 460px); max-height:78vh; overflow:auto;
       background: var(--glass-strong); border:1px solid rgba(255,255,255,0.12);
       border-radius:18px; box-shadow: var(--shadow); backdrop-filter: blur(12px); padding:14px; display:none; z-index:7;
       animation: pop .18s ease both;
@@ -129,22 +126,21 @@
     .section h4{ margin:0 0 10px 0; font-size:13px; text-transform:uppercase; letter-spacing:2px; color:var(--fg-dim) }
     .row{ display:flex; gap:10px; flex-wrap:wrap; align-items:center }
     .row > *{ flex: 1 1 auto }
+
     .input, .select, .btn, .file{
       width:100%; border-radius:12px; border:1px solid rgba(255,255,255,0.16); background: rgba(255,255,255,0.06); color:#fff; padding:10px 12px; font-size:14px;
     }
-    .btn{ cursor:pointer; text-align:center; transition:.2s; }
+    .btn{ cursor:pointer; text-align:center; transition:.2s }
     .btn:hover{ background: rgba(255,255,255,0.1) }
-    .switch{
-      display:inline-flex; align-items:center; gap:10px; cursor:pointer;
-    }
+
+    .switch{ display:inline-flex; align-items:center; gap:10px; cursor:pointer }
     .switch input{ appearance:none; width:44px; height:26px; background:#3b3f61; border-radius:999px; position:relative; outline:none; transition:.2s }
     .switch input:checked{ background: #4f46e5 }
     .switch input::after{ content:""; position:absolute; width:20px; height:20px; background:#fff; border-radius:50%; top:3px; left:3px; transition:.2s }
     .switch input:checked::after{ left:21px }
+
     .thumbs{ display:grid; grid-template-columns: repeat(6, 1fr); gap:8px }
-    .thumb{
-      height:36px; border-radius:10px; cursor:pointer; border:1px solid rgba(255,255,255,0.14); transition:.15s;
-    }
+    .thumb{ height:36px; border-radius:10px; cursor:pointer; border:1px solid rgba(255,255,255,0.14); transition:.15s }
     .thumb:hover{ transform: translateY(-2px) }
     .p1{ background: linear-gradient(135deg,#203a43,#2c5364) }
     .p2{ background: linear-gradient(135deg,#1f1c2c,#928DAB) }
@@ -153,15 +149,33 @@
     .p5{ background: linear-gradient(135deg,#1a2a6c,#b21f1f,#fdbb2d) }
     .p6{ background: linear-gradient(135deg,#0f2027,#203a43,#2c5364) }
 
-    /* Music controls */
+    /* Enhanced music section */
     .controls{ display:flex; gap:8px; align-items:center; flex-wrap:wrap }
     .ctrl{
       width:40px; height:40px; display:grid; place-items:center; border-radius:12px; border:1px solid rgba(255,255,255,0.16);
       background: rgba(255,255,255,0.06); color:#fff; cursor:pointer; transition:.2s;
     }
     .ctrl:hover{ background: rgba(255,255,255,0.1) }
+    .toggle.on{ outline:2px solid var(--accent); background: rgba(255,255,255,0.12) }
+
     .track-label{ font-size:13px; color:var(--fg-dim) }
     .vol{ width:160px }
+    .seek-row{ display:flex; align-items:center; gap:10px; margin-top:8px }
+    .time{ font-size:12px; color:var(--fg-dim); min-width:42px; text-align:center }
+
+    /* Modern sliders */
+    input[type="range"]{
+      accent-color: var(--accent);
+      width:100%;
+    }
+
+    /* Track list */
+    .tracks{ margin-top:10px; max-height:180px; overflow:auto; border:1px solid rgba(255,255,255,0.12); border-radius:12px; padding:6px; background: rgba(255,255,255,0.04) }
+    .track-item{
+      display:flex; align-items:center; gap:8px; padding:8px; border-radius:10px; cursor:pointer;
+    }
+    .track-item:hover{ background: rgba(255,255,255,0.08) }
+    .track-item.active{ background: rgba(110,168,254,0.18); border:1px solid rgba(110,168,254,0.5) }
 
     @media (max-width:520px){
       .tile{ min-width: 46% }
@@ -186,6 +200,7 @@
 
     <div class="countdown-card">
       <p class="target-line">NEET 2026 — 3 May 2026</p>
+
       <div class="timer" id="timer">
         <div class="tile"><div class="value" id="months">0</div><div class="label">Months</div></div>
         <div class="tile"><div class="value" id="weeks">0</div><div class="label">Weeks</div></div>
@@ -194,6 +209,7 @@
         <div class="tile"><div class="value" id="minutes">00</div><div class="label">Minutes</div></div>
         <div class="tile"><div class="value" id="seconds">00</div><div class="label">Seconds</div></div>
       </div>
+
       <div class="meta" id="metaText">Stay focused; every second counts.</div>
       <div class="motivation" id="motivation">Stay consistent; small daily steps make big results.</div>
     </div>
@@ -209,15 +225,9 @@
   <div class="panel" id="panel">
     <div class="section">
       <h4>Personalize</h4>
-      <div class="row">
-        <input id="nameInput" class="input" placeholder="Enter name (e.g., Md Soliuddin)" />
-      </div>
-      <div class="row" style="margin-top:8px">
-        <input id="motivationInput" class="input" placeholder="Enter motivational line" />
-      </div>
-      <div class="row" style="margin-top:8px">
-        <button type="button" id="savePersonalBtn" class="btn">Save</button>
-      </div>
+      <div class="row"><input id="nameInput" class="input" placeholder="Enter name (e.g., Md Soliuddin)" /></div>
+      <div class="row" style="margin-top:8px"><input id="motivationInput" class="input" placeholder="Enter motivational line" /></div>
+      <div class="row" style="margin-top:8px"><button type="button" id="savePersonalBtn" class="btn">Save</button></div>
     </div>
 
     <div class="section">
@@ -226,9 +236,7 @@
         <span>Vanta Birds Animation</span>
         <input type="checkbox" id="vantaToggle" />
       </label>
-      <div class="row" style="margin-top:10px">
-        <input id="wallUpload" class="file" type="file" accept="image/*" />
-      </div>
+      <div class="row" style="margin-top:10px"><input id="wallUpload" class="file" type="file" accept="image/*" /></div>
       <div style="margin:10px 0 6px; font-size:13px; color:var(--fg-dim)">Presets</div>
       <div class="thumbs">
         <div class="thumb p1" data-preset="preset-2" title="Preset 1"></div>
@@ -249,11 +257,19 @@
           <option value="rain">Preset: Rainy Noise</option>
         </select>
       </div>
+
       <div class="row" style="margin-top:10px">
         <input id="audioUpload" class="file" type="file" accept="audio/*" multiple />
       </div>
+
       <div class="row" style="margin-top:12px; align-items:center">
         <div class="controls">
+          <button type="button" class="ctrl" id="prevBtn" title="Previous" aria-label="Previous">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 6v12l-8.5-6L18 6zM6 6h2v12H6z"/></svg>
+          </button>
+          <button type="button" class="ctrl" id="back10" title="Back 10s" aria-label="Back 10 seconds">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 5v2a5 5 0 11-5 5H5a7 7 0 107-7z"/><text x="9" y="16" font-size="8" fill="currentColor">10</text></svg>
+          </button>
           <button type="button" class="ctrl" id="playBtn" title="Play" aria-label="Play">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
           </button>
@@ -263,15 +279,33 @@
           <button type="button" class="ctrl" id="stopBtn" title="Stop" aria-label="Stop">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h12v12H6z"/></svg>
           </button>
+          <button type="button" class="ctrl" id="fwd10" title="Forward 10s" aria-label="Forward 10 seconds">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 5v2a5 5 0 105 5h2a7 7 0 11-7-7z"/><text x="9" y="16" font-size="8" fill="currentColor">10</text></svg>
+          </button>
           <button type="button" class="ctrl" id="nextBtn" title="Next" aria-label="Next">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zM16 6h2v12h-2z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6l8.5 6L6 18V6zm12 0h-2v12h2z"/></svg>
+          </button>
+          <button type="button" class="ctrl toggle" id="repeatBtn" title="Repeat One" aria-label="Repeat One">R1</button>
+          <button type="button" class="ctrl toggle" id="shuffleBtn" title="Shuffle" aria-label="Shuffle">SH</button>
+          <button type="button" class="ctrl" id="muteBtn" title="Mute" aria-label="Mute">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 10v4h4l5 5V5L7 10H3zM16 9l5 5M21 9l-5 5"/></svg>
           </button>
         </div>
         <input id="volume" class="vol" type="range" min="0" max="1" step="0.01" value="0.25" />
       </div>
+
+      <div class="seek-row">
+        <span class="time" id="curTime">0:00</span>
+        <input id="seek" type="range" min="0" max="0" step="1" value="0" />
+        <span class="time" id="durTime">0:00</span>
+      </div>
+
       <div class="row" style="margin-top:8px">
         <div class="track-label" id="trackLabel">Track: Pink Noise</div>
       </div>
+
+      <div class="tracks" id="trackList"></div>
+
       <audio id="audio" preload="metadata"></audio>
     </div>
   </div>
@@ -282,8 +316,8 @@
 
   <script>
     // ---------- Utilities ----------
-    const $ = (q) => document.querySelector(q);
-    const $$ = (q) => document.querySelectorAll(q);
+    const $ = q => document.querySelector(q);
+    const $$ = q => document.querySelectorAll(q);
 
     // Persistent settings
     const store = {
@@ -296,7 +330,7 @@
       motivation: 'Stay consistent; small daily steps make big results.',
       vanta: true,
       preset: 'preset-1',
-      customWall: null,
+      customWall: null, // will be set to default JPG on first run if available
       volume: 0.25,
       lastPresetKey: 'pink',
       uploads: [] // {name, url}
@@ -308,6 +342,7 @@
     const nameInput = $('#nameInput');
     const motivation = $('#motivation');
     const motivationInput = $('#motivationInput');
+
     function renderPersonal(){
       nameSpan.textContent = prefs.name || 'Aspirant';
       motivation.textContent = prefs.motivation || 'Stay consistent; small daily steps make big results.';
@@ -332,7 +367,6 @@
     const ids = ['months','weeks','days','hours','minutes','seconds'];
     const els = Object.fromEntries(ids.map(id => [id, document.getElementById(id)]));
     const metaText = $('#metaText');
-
     // 3 May 2026 00:00 IST = 2 May 2026 18:30 UTC
     const targetUTCms = Date.UTC(2026, 4, 2, 18, 30, 0);
 
@@ -342,11 +376,9 @@
       if(ed < sd) m -= 1;
       return Math.max(0, m);
     }
-
     function updateCountdown(){
       const now = new Date();
-      const nowUTCms = now.getTime();
-      let diff = targetUTCms - nowUTCms;
+      const diff = targetUTCms - now.getTime();
       if (diff <= 0){
         ids.forEach(id => els[id].textContent = '0');
         metaText.textContent = 'Exam Day! Give your best.';
@@ -358,7 +390,7 @@
       const hours = Math.floor((totalSec % (24*3600)) / 3600);
       const minutes = Math.floor((totalSec % 3600) / 60);
       const seconds = totalSec % 60;
-      const months = monthsDiff(new Date(nowUTCms), new Date(targetUTCms));
+      const months = monthsDiff(new Date(), new Date(targetUTCms));
 
       els.months.textContent = months;
       els.weeks.textContent = Math.floor(diff / (7*24*3600*1000));
@@ -366,17 +398,17 @@
       els.hours.textContent = String(hours).padStart(2,'0');
       els.minutes.textContent = String(minutes).padStart(2,'0');
       els.seconds.textContent = String(seconds).padStart(2,'0');
-
       metaText.textContent = `Time left ≈ ${months} months | ${weeks} weeks`;
     }
     updateCountdown();
-    const timerHandle = setInterval(updateCountdown, 1000);
+    setInterval(updateCountdown, 1000);
 
     // ---------- Backgrounds: Vanta Birds + Wallpapers ----------
     const wallpaperLayer = $('#wallpaper-layer');
     const vantaLayer = $('#vanta-layer');
     const vantaToggle = $('#vantaToggle');
     let vantaInstance = null;
+    const DEFAULT_WALL = 'pexels-steve-1266808.jpg';
 
     function ensureVanta(on){
       if(!on){
@@ -385,11 +417,7 @@
         return;
       }
       if(vantaInstance) return;
-      if(!(window.VANTA && window.THREE)){
-        // retry shortly if libs not ready yet (e.g., slow CDN)
-        setTimeout(() => ensureVanta(true), 500);
-        return;
-      }
+      if(!(window.VANTA && window.THREE)){ setTimeout(() => ensureVanta(true), 500); return; }
       try{
         vantaInstance = VANTA.BIRDS({
           el: vantaLayer,
@@ -400,7 +428,7 @@
           minWidth: 200.00,
           scale: 1.00,
           scaleMobile: 1.00,
-          backgroundAlpha: 0.0, // show wallpaper beneath
+          backgroundAlpha: 0.0,
           color1: 0x6ea8fe,
           color2: 0x8b5cf6,
           birdSize: 1.2,
@@ -417,7 +445,6 @@
         store.save(prefs);
       }
     }
-
     function applyPreset(presetClass){
       ['preset-1','preset-2','preset-3','preset-4','preset-5','preset-6'].forEach(c => wallpaperLayer.classList.remove(c));
       if(presetClass) wallpaperLayer.classList.add(presetClass);
@@ -427,12 +454,26 @@
       ['preset-1','preset-2','preset-3','preset-4','preset-5','preset-6'].forEach(c => wallpaperLayer.classList.remove(c));
       wallpaperLayer.style.backgroundImage = `url('${url}')`;
     }
+    function applyDefaultWallpaper(){
+      if(prefs.customWall) return false;
+      const tester = new Image();
+      tester.onload = () => {
+        prefs.customWall = DEFAULT_WALL;
+        store.save(prefs);
+        applyCustomWallpaper(DEFAULT_WALL);
+      };
+      tester.onerror = () => { applyPreset(prefs.preset || 'preset-1'); };
+      tester.src = DEFAULT_WALL;
+      return true;
+    }
 
-    // Init background after window load (ensures scripts are available)
     window.addEventListener('load', () => {
       vantaToggle.checked = !!prefs.vanta;
-      if(prefs.customWall){ applyCustomWallpaper(prefs.customWall) } else { applyPreset(prefs.preset || 'preset-1') }
+      if(!applyDefaultWallpaper()){
+        if(prefs.customWall){ applyCustomWallpaper(prefs.customWall) } else { applyPreset(prefs.preset || 'preset-1') }
+      }
       ensureVanta(prefs.vanta);
+      wallpaperLayer.style.filter = 'brightness(0.9) saturate(1.1)';
     });
 
     vantaToggle.addEventListener('change', (e) => {
@@ -442,20 +483,14 @@
     });
     $$('.thumb').forEach(th => th.addEventListener('click', () => {
       const p = th.getAttribute('data-preset');
-      prefs.preset = p;
-      prefs.customWall = null;
-      applyPreset(p);
-      store.save(prefs);
+      prefs.preset = p; prefs.customWall = null;
+      applyPreset(p); store.save(prefs);
     }));
     $('#wallUpload').addEventListener('change', (e) => {
       const f = e.target.files && e.target.files[0];
       if(!f) return;
       const reader = new FileReader();
-      reader.onload = () => {
-        prefs.customWall = reader.result;
-        applyCustomWallpaper(prefs.customWall);
-        store.save(prefs);
-      };
+      reader.onload = () => { prefs.customWall = reader.result; applyCustomWallpaper(prefs.customWall); store.save(prefs); };
       reader.readAsDataURL(f);
     });
 
@@ -464,26 +499,23 @@
     const panel = $('#panel');
     function openPanel(){ panel.classList.add('open') }
     function closePanel(){ panel.classList.remove('open') }
+    menuBtn.addEventListener('click', (e) => { e.stopPropagation(); panel.classList.toggle('open'); });
+    document.addEventListener('click', (e) => { if(panel.contains(e.target) || menuBtn.contains(e.target)) return; closePanel(); });
+    document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closePanel(); });
 
-    menuBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      panel.classList.toggle('open');
-    });
-    document.addEventListener('click', (e) => {
-      if(panel.contains(e.target) || menuBtn.contains(e.target)) return;
-      closePanel();
-    });
-    document.addEventListener('keydown', (e) => {
-      if(e.key === 'Escape') closePanel();
-    });
-
-    // ---------- Music: Preset noise + uploads ----------
+    // ---------- Music: Preset noise + uploads (enhanced player) ----------
     const audio = $('#audio');
     const presetSelect = $('#presetTrack');
     const label = $('#trackLabel');
     const volume = $('#volume');
+    const seek = $('#seek');
+    const curTime = $('#curTime');
+    const durTime = $('#durTime');
     const playBtn = $('#playBtn'), pauseBtn=$('#pauseBtn'), stopBtn=$('#stopBtn'), nextBtn=$('#nextBtn');
+    const prevBtn = $('#prevBtn'), back10=$('#back10'), fwd10=$('#fwd10');
+    const repeatBtn = $('#repeatBtn'), shuffleBtn = $('#shuffleBtn'), muteBtn = $('#muteBtn');
     const audioUpload = $('#audioUpload');
+    const trackList = $('#trackList');
 
     let ctx, masterGain;
     let activePreset = null; // 'pink' | 'brown' | 'rain' | null
@@ -491,6 +523,8 @@
     let rainFilter = null;
     let srcBuffers = []; // uploaded blobs {name, url}
     let currentIndex = 0;
+    let repeatOne = false, shuffle = false;
+    let muted = false;
 
     function initAudioCtx(){
       if(ctx) return;
@@ -499,22 +533,23 @@
       masterGain.gain.value = prefs.volume ?? 0.25;
       masterGain.connect(ctx.destination);
     }
+    function timeFmt(s){
+      s = Math.max(0, Math.floor(s||0));
+      const m = Math.floor(s/60), ss = s%60;
+      return `${m}:${String(ss).padStart(2,'0')}`;
+    }
     function stopPreset(){
       if(processorNode){
         try{ processorNode.disconnect() }catch{}
         processorNode.onaudioprocess = null;
         processorNode = null;
       }
-      if(rainFilter){
-        try{ rainFilter.disconnect() }catch{}
-        rainFilter = null;
-      }
+      if(rainFilter){ try{ rainFilter.disconnect() }catch{} rainFilter = null; }
       activePreset = null;
+      navigator.mediaSession && (navigator.mediaSession.playbackState = 'none');
     }
     function playPink(){
-      initAudioCtx();
-      stopAudioTag();
-      stopPreset();
+      initAudioCtx(); stopAudioTag(); stopPreset();
       activePreset = 'pink';
       processorNode = ctx.createScriptProcessor(4096, 1, 1);
       let b0=0,b1=0,b2=0,b3=0,b4=0,b5=0,b6=0;
@@ -535,11 +570,10 @@
       };
       processorNode.connect(masterGain);
       label.textContent = 'Track: Pink Noise';
+      mediaSessionSet('Pink Noise', 'Study ambience', null);
     }
     function playBrown(){
-      initAudioCtx();
-      stopAudioTag();
-      stopPreset();
+      initAudioCtx(); stopAudioTag(); stopPreset();
       activePreset = 'brown';
       processorNode = ctx.createScriptProcessor(4096,1,1);
       let lastOut = 0.0;
@@ -553,27 +587,23 @@
       };
       processorNode.connect(masterGain);
       label.textContent = 'Track: Brown Noise';
+      mediaSessionSet('Brown Noise', 'Study ambience', null);
     }
     function playRain(){
-      initAudioCtx();
-      stopAudioTag();
-      stopPreset();
+      initAudioCtx(); stopAudioTag(); stopPreset();
       activePreset = 'rain';
       processorNode = ctx.createScriptProcessor(4096,1,1);
       const noiseGain = ctx.createGain(); noiseGain.gain.value = 0.35;
-      rainFilter = ctx.createBiquadFilter();
-      rainFilter.type = 'lowpass';
-      rainFilter.frequency.value = 6000;
-      rainFilter.Q.value = 0.7;
+      rainFilter = ctx.createBiquadFilter(); rainFilter.type = 'lowpass'; rainFilter.frequency.value = 6000; rainFilter.Q.value = 0.7;
       processorNode.onaudioprocess = (e) => {
         const out = e.outputBuffer.getChannelData(0);
         for(let i=0;i<out.length;i++){ out[i] = Math.random()*2 - 1 }
       };
-      processorNode.connect(rainFilter);
-      rainFilter.connect(noiseGain);
-      noiseGain.connect(masterGain);
+      processorNode.connect(rainFilter); rainFilter.connect(noiseGain); noiseGain.connect(masterGain);
       label.textContent = 'Track: Rainy Noise';
+      mediaSessionSet('Rainy Noise', 'Study ambience', null);
     }
+
     function stopAudioTag(){ audio.pause(); audio.currentTime = 0; }
     function playAudioTag(src){
       stopPreset();
@@ -581,6 +611,7 @@
       audio.volume = prefs.volume ?? 0.25;
       audio.play().catch(()=>{});
       label.textContent = 'Track: ' + (srcBuffers[currentIndex]?.name || 'Local file');
+      mediaSessionSet(srcBuffers[currentIndex]?.name || 'Audio', 'Local file', null);
     }
     function playSelected(){
       const key = prefs.lastPresetKey || 'pink';
@@ -589,6 +620,7 @@
       else if(key==='rain') playRain();
     }
 
+    // Volume, preset select
     presetSelect.value = prefs.lastPresetKey || 'pink';
     volume.value = prefs.volume ?? 0.25;
 
@@ -602,60 +634,119 @@
       prefs.lastPresetKey = presetSelect.value; store.save(prefs);
       playSelected();
     });
-    playBtn.addEventListener('click', () => {
-      if(srcBuffers.length){
-        playAudioTag(srcBuffers[currentIndex].url);
-      } else {
-        playSelected();
-      }
-    });
+
+    // Buttons
+    playBtn.addEventListener('click', () => { if(srcBuffers.length){ playAudioTag(srcBuffers[currentIndex].url); } else { playSelected(); } });
     pauseBtn.addEventListener('click', () => {
       if(activePreset){
-        if(ctx && ctx.state==='running'){ ctx.suspend() } else if(ctx){ ctx.resume() }
+        if(ctx && ctx.state==='running'){ ctx.suspend(); navigator.mediaSession && (navigator.mediaSession.playbackState='paused'); }
+        else if(ctx){ ctx.resume(); navigator.mediaSession && (navigator.mediaSession.playbackState='playing'); }
       } else {
-        audio.paused ? audio.play() : audio.pause();
+        if(audio.paused){ audio.play(); } else { audio.pause(); }
       }
     });
     stopBtn.addEventListener('click', () => {
-      if(activePreset){
-        stopPreset();
-        label.textContent = 'Track: Stopped';
-      } else {
-        stopAudioTag();
-        label.textContent = 'Track: Stopped';
-      }
+      if(activePreset){ stopPreset(); label.textContent='Track: Stopped'; }
+      else { stopAudioTag(); label.textContent='Track: Stopped'; }
     });
-    nextBtn.addEventListener('click', () => {
-      if(srcBuffers.length){
-        currentIndex = (currentIndex + 1) % srcBuffers.length;
-        playAudioTag(srcBuffers[currentIndex].url);
-      } else {
+    nextBtn.addEventListener('click', () => { nextTrack(); });
+    prevBtn.addEventListener('click', () => { prevTrack(); });
+    back10.addEventListener('click', () => { if(!activePreset){ audio.currentTime = Math.max(0, (audio.currentTime||0) - 10); } });
+    fwd10.addEventListener('click', () => { if(!activePreset){ audio.currentTime = Math.min((audio.duration||0), (audio.currentTime||0) + 10); } });
+    repeatBtn.addEventListener('click', () => { repeatOne = !repeatOne; repeatBtn.classList.toggle('on', repeatOne); });
+    shuffleBtn.addEventListener('click', () => { shuffle = !shuffle; shuffleBtn.classList.toggle('on', shuffle); });
+    muteBtn.addEventListener('click', () => { muted = !muted; audio.muted = muted; muteBtn.classList.toggle('on', muted); });
+
+    // Seek + time
+    function refreshTimes(){
+      curTime.textContent = timeFmt(audio.currentTime||0);
+      durTime.textContent = isFinite(audio.duration) ? timeFmt(audio.duration) : '0:00';
+    }
+    audio.addEventListener('loadedmetadata', () => {
+      seek.max = isFinite(audio.duration) ? Math.floor(audio.duration) : 0;
+      refreshTimes();
+    });
+    audio.addEventListener('timeupdate', () => {
+      if(!seekDragging) seek.value = Math.floor(audio.currentTime||0);
+      refreshTimes();
+    });
+    let seekDragging = false;
+    seek.addEventListener('input', () => { seekDragging = true; curTime.textContent = timeFmt(seek.value); });
+    seek.addEventListener('change', () => { if(!activePreset){ audio.currentTime = +seek.value; } seekDragging = false; });
+
+    // Ended -> next/repeat
+    audio.addEventListener('ended', () => {
+      if(repeatOne){ audio.currentTime = 0; audio.play(); return; }
+      nextTrack();
+    });
+
+    // Uploads
+    function renderTrackList(){
+      trackList.innerHTML = '';
+      srcBuffers.forEach((t, i) => {
+        const div = document.createElement('div');
+        div.className = 'track-item' + (i===currentIndex ? ' active':'');
+        div.textContent = t.name;
+        div.addEventListener('click', () => {
+          currentIndex = i; highlightActive(); playAudioTag(srcBuffers[currentIndex].url);
+        });
+        trackList.appendChild(div);
+      });
+    }
+    function highlightActive(){
+      $$('.track-item').forEach((el, idx) => el.classList.toggle('active', idx===currentIndex));
+    }
+    function nextTrack(){
+      if(!srcBuffers.length){ // cycle presets
         const order = ['pink','brown','rain'];
         const idx = order.indexOf(presetSelect.value);
         const next = order[(idx+1)%order.length];
-        presetSelect.value = next;
-        prefs.lastPresetKey = next; store.save(prefs);
-        playSelected();
+        presetSelect.value = next; prefs.lastPresetKey = next; store.save(prefs); playSelected(); return;
       }
-    });
-
-    // Restore previous uploads
-    if(Array.isArray(prefs.uploads)){
-      srcBuffers = prefs.uploads;
-      if(srcBuffers.length){ label.textContent = 'Track: ' + srcBuffers[0].name; }
+      if(shuffle){ currentIndex = Math.floor(Math.random() * srcBuffers.length); }
+      else { currentIndex = (currentIndex + 1) % srcBuffers.length; }
+      highlightActive(); playAudioTag(srcBuffers[currentIndex].url);
     }
-    audioUpload.addEventListener('change', (e) => {
+    function prevTrack(){
+      if(!srcBuffers.length){ const order=['pink','brown','rain']; const idx=order.indexOf(presetSelect.value); const prev=order[(idx-1+order.length)%order.length]; presetSelect.value=prev; prefs.lastPresetKey=prev; store.save(prefs); playSelected(); return; }
+      currentIndex = (currentIndex - 1 + srcBuffers.length) % srcBuffers.length;
+      highlightActive(); playAudioTag(srcBuffers[currentIndex].url);
+    }
+
+    if(Array.isArray(prefs.uploads)){ srcBuffers = prefs.uploads; currentIndex = 0; renderTrackList(); if(srcBuffers.length){ label.textContent='Track: ' + srcBuffers[0].name; } }
+    $('#audioUpload').addEventListener('change', (e) => {
       const files = Array.from(e.target.files || []);
       if(!files.length) return;
       (srcBuffers||[]).forEach(x=> x.url && x.url.startsWith('blob:') && URL.revokeObjectURL(x.url));
       srcBuffers = files.map(f => ({ name: f.name, url: URL.createObjectURL(f) }));
       prefs.uploads = srcBuffers; store.save(prefs);
-      currentIndex = 0;
-      playAudioTag(srcBuffers[0].url);
+      currentIndex = 0; renderTrackList(); playAudioTag(srcBuffers[0].url);
     });
 
-    // Visual tuning
-    wallpaperLayer.style.filter = 'brightness(0.9) saturate(1.1)';
+    // Media Session API (lock screen / hardware keys)
+    function mediaSessionSet(title, artist, artwork){
+      if(!('mediaSession' in navigator)) return;
+      try{
+        navigator.mediaSession.metadata = new MediaMetadata({ title, artist, album: 'NEET Focus', artwork: artwork ? [{src: artwork, sizes:'512x512', type:'image/png'}] : [] });
+        navigator.mediaSession.playbackState = 'playing';
+        navigator.mediaSession.setActionHandler('play', () => { if(activePreset){ ctx && ctx.resume(); } else { audio.play(); } });    // MDN setActionHandler usage
+        navigator.mediaSession.setActionHandler('pause', () => { if(activePreset){ ctx && ctx.suspend(); } else { audio.pause(); } });
+        navigator.mediaSession.setActionHandler('stop', () => { if(activePreset){ stopPreset(); } else { stopAudioTag(); } });
+        navigator.mediaSession.setActionHandler('previoustrack', () => prevTrack());
+        navigator.mediaSession.setActionHandler('nexttrack', () => nextTrack());
+        navigator.mediaSession.setActionHandler('seekbackward', (e) => { if(!activePreset){ audio.currentTime = Math.max(0, (audio.currentTime||0) - (e.seekOffset||10)); } });
+        navigator.mediaSession.setActionHandler('seekforward', (e) => { if(!activePreset){ audio.currentTime = Math.min((audio.duration||0), (audio.currentTime||0) + (e.seekOffset||10)); } });
+        navigator.mediaSession.setActionHandler('seekto', (e) => { if(!activePreset && e.seekTime != null){ audio.currentTime = e.seekTime; } });
+      }catch(e){}
+    }
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+      if(e.target.closest('input,textarea')) return;
+      if(e.code==='Space'){ e.preventDefault(); if(activePreset){ (ctx && ctx.state==='running') ? ctx.suspend() : ctx && ctx.resume(); } else { audio.paused ? audio.play() : audio.pause(); } }
+      if(e.code==='ArrowRight' && !activePreset){ audio.currentTime = Math.min((audio.duration||0), (audio.currentTime||0)+5); }
+      if(e.code==='ArrowLeft' && !activePreset){ audio.currentTime = Math.max(0, (audio.currentTime||0)-5); }
+    });
   </script>
 </body>
 </html>
